@@ -17,34 +17,30 @@ namespace ListaAppuntamenti
         public Appuntamenti(DateTime DataOra, string NomeAppuntamento, string LocaltaAppuntamento)
         {
 
-            this.DataOra = DataOra = DateTime.Now;
+            this.DataOra = DataOra;
             this.NomeAppuntamento = NomeAppuntamento;
             this.LocalitaAppuntamento = LocaltaAppuntamento;
-            try
-            {
-                
-            }
-            catch (Exception ex)
-            {
 
+            if (DataOra < DateTime.Now)
+            {
+                throw new Exception("La data è  troppo vecchia");
             }
         }
 
 
         public void CambioDataOra(DateTime NuovaDataOra)
         {
-            do
-            {
-                Console.WriteLine("inserisci una nuova data");
-                NuovaDataOra = DateTime.Parse(Console.ReadLine());
+          
 
-
-                if (NuovaDataOra < DataOra)
+                if (NuovaDataOra < DateTime.Now)
                 {
-                    throw new Exception("La data NON è VALIDA");
+                    throw new InvalidDataException("La data NON è VALIDA");
                 }
-
-            } while (NuovaDataOra > DataOra);
+                else
+                {
+                     this.DataOra= NuovaDataOra;
+                }
+          
         }
 
 
@@ -59,25 +55,23 @@ namespace ListaAppuntamenti
             return LocalitaAppuntamento;
         }
 
-        public string ModificaNome(string nuovoNomeAppuntamento)
+        public void ModificaNome(string nuovoNomeAppuntamento)
         {
-            Console.WriteLine("inserisci un nuovo nome appuntamento");
-            nuovoNomeAppuntamento = Console.ReadLine();
-            return nuovoNomeAppuntamento;
+           
+        this.NomeAppuntamento= nuovoNomeAppuntamento;
         }
 
-        public string ModificaLocalita(string nuovaLocalitaAppuntamento)
+        public void ModificaLocalita(string nuovaLocalitaAppuntamento)
         {
-            Console.WriteLine("inserisci una nuova località");
-            nuovaLocalitaAppuntamento = Console.ReadLine();
-            return nuovaLocalitaAppuntamento;
+            
+           this.LocalitaAppuntamento= nuovaLocalitaAppuntamento;
 
 
 
         }
 
 
-        public  string ToString()
+        public  override string ToString()
         {
             string rappresentazioneInStringa = "";
 
