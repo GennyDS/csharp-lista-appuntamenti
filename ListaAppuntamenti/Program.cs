@@ -42,13 +42,25 @@ Scelta=Scelta.ToLower();
 
 switch(Scelta)
 {
-    case "si":
+    case  "si":
         Console.WriteLine("Quale appuntamento vuoi modificare? (inserisci il nome )");
         string NomeAppuntamentoDaModificare=Console.ReadLine();
         bool NomeTrovato = false;
         for(int i=0;i<ListaAppuntamenti.Count;i++)
         {
+            if (ListaAppuntamenti[i].GetNomeAppuntamento() == NomeAppuntamentoDaModificare) ;
+            Console.WriteLine("insrisci la nuova data");
+          DateTime NuovaData= DateTime.Parse(Console.ReadLine());
+            ListaAppuntamenti[i].CambioDataOra(NuovaData);
+            Console.WriteLine("Data Modificata !!");
+            NomeTrovato=true;
 
+            Console.WriteLine("ECCO LA LISTA !!");
+            foreach (Appuntamenti appuntamenti in ListaAppuntamenti)
+            {
+                appuntamenti.ToString();
+            }
+            break;
         }
 }
 
